@@ -1,0 +1,27 @@
+.canvas {
+    height: 512px;
+    width: 512px;
+    display: flex;
+    flex-direction: column;
+}
+
+.rows {
+    display: flex;
+    justify-self: stretch;
+}
+
+.pixels {
+    height: 100%;
+    width: 100%;
+}
+
+/* div {
+    border-width: 1px;
+    border-color: black;
+    border-style: solid;
+    margin: 0;
+} */
+
+.color {
+    background-color: black;
+}
