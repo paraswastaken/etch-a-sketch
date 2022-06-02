@@ -1,8 +1,17 @@
+body {
+    display: flex;
+}
+
+
 .canvas {
     height: 512px;
     width: 512px;
     display: flex;
     flex-direction: column;
+    margin: auto;
+    border-width: 1px;
+    border-color: black;
+    border-style: solid;
 }
 
 .rows {
