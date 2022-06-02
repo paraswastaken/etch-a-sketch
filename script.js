@@ -1,7 +1,5 @@
 const canv = document.querySelector('.canvas');
-let temp, temp2, n;
-
-n = Number(prompt("Enter n"));
+let temp, temp2, n, pixels;
 
 function createCanvas(n) {
     let i, j;
@@ -17,14 +15,30 @@ function createCanvas(n) {
             temp2.setAttribute('draggable', 'false');
             temp.appendChild(temp2);
         }
-    }  
+    }
+    pixels = document.querySelectorAll('.pixels');
+    pixels.forEach(evl);
 }
+
+createCanvas(16);
+
+const dim = document.querySelector('#dimensions');
+dim.onclick = ()=>{
+    while(canv.firstChild){
+        canv.removeChild(canv.firstChild);
+    }
+    n = Number(prompt("Enter n"));
+    createCanvas(n);
+};
 
 let mouseDown = false
 document.body.onmousedown = () => (mouseDown = true)
 document.body.onmouseup = () => (mouseDown = false)
 
-createCanvas(n);
+
+function clear(){
+    pixels.forEach((x)=>x.classList.remove('color'));
+}
 
 function addCol(e){
     if(e.type === 'mouseover' && !mouseDown) return;
@@ -37,5 +51,9 @@ function evl(pix){
     pix.addEventListener('mouseover', addCol);
 }
 
-const pixels = document.querySelectorAll('.pixels');
-pixels.forEach(evl);
+// const pixels = document.querySelectorAll('.pixels');
+// pixels.forEach(evl);
+
+const clr = document.querySelector('#clear');
+clr.onclick = clear;
+
