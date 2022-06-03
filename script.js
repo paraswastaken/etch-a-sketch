@@ -1,6 +1,10 @@
 const canv = document.querySelector('.canvas');
 let temp, temp2, n, pixels;
 
+
+// Function to create canvas, takes as input an integer and updates
+// container with n*n *pixels*
+
 function createCanvas(n) {
     let i, j;
     for(i=0;i<n;i++){
@@ -13,13 +17,53 @@ function createCanvas(n) {
             temp2 = document.createElement("div");
             temp2.classList.add(`pixels`);
             temp2.setAttribute('draggable', 'false');
+            temp2.addEventListener('mousedown', draw);
+            temp2.addEventListener('mouseover', draw);
             temp.appendChild(temp2);
         }
     }
-    pixels = document.querySelectorAll('.pixels');
-    pixels.forEach(evl);
 }
 
+const colPick = document.querySelector("#color");
+let color = colPick.value;
+ colPick.oninput = ()=>{
+     color = colPick.value;
+ }
+
+let flag = 'normal';
+document.querySelector('#normal'). onclick = ()=>flag='normal';
+document.querySelector('#erase'). onclick = ()=>flag='erase';
+
+let mouseDown = false
+document.body.onmousedown = () => (mouseDown = true)
+document.body.onmouseup = () => (mouseDown = false)
+
+
+function clear(){
+    // pixels.forEach((x)=>x.style.background = "white");
+    while(canv.firstChild){
+        canv.removeChild(canv.firstChild);
+    }
+    n = slider.value;
+    createCanvas(n);
+}
+
+function draw(e){
+    if(e.type === 'mouseover' && !mouseDown) return;
+    if(flag==='normal'){
+        e.target.style.background = color;
+    }
+    else if(flag==='erase'){
+        e.target.style.background = "white"
+    }
+}
+
+
+const clr = document.querySelector('#clear');
+clr.onclick = clear;
+
+
+// Code for slider to change dimensions of canvas
 
 const slider = document.querySelector('#dimensions');
 slider.oninput = ()=>{
@@ -30,31 +74,5 @@ slider.oninput = ()=>{
     createCanvas(n);
 };
 
+
 createCanvas(slider.value);
-
-let mouseDown = false
-document.body.onmousedown = () => (mouseDown = true)
-document.body.onmouseup = () => (mouseDown = false)
-
-
-function clear(){
-    pixels.forEach((x)=>x.classList.remove('color'));
-}
-
-function addCol(e){
-    if(e.type === 'mouseover' && !mouseDown) return;
-
-    e.target.classList.add('color');
-}
-
-function evl(pix){
-    pix.addEventListener('mousedown', addCol);
-    pix.addEventListener('mouseover', addCol);
-}
-
-// const pixels = document.querySelectorAll('.pixels');
-// pixels.forEach(evl);
-
-const clr = document.querySelector('#clear');
-clr.onclick = clear;
-
