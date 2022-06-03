@@ -77,5 +77,7 @@ slider.oninput = ()=>{
     createCanvas(n);
 };
 
+// const rangeT = document.querySelector(".rangeText")
+// rangeT.textContent = `${slider.value} x ${slider.value}`;
 
 createCanvas(slider.value);
