@@ -9,11 +9,18 @@
     <title>Etch A Sketch</title>
 </head>
 <body>
-    <button id="clear">Clear</button>
-    <input type="range" min="1" max="64" value="16" id="dimensions">
-    <input type="color" value="#241e1e" id="color">
-    <button id="normal">Normal Mode</button>
-    <button id="erase">Eraser Mode</button>
-    <div class="canvas" draggable="false"></div>    
+    <div class="head">
+        <h1>Pixel Canvas</h1>
+    </div>
+    <div class="body2">
+        <div class="left">
+            <input type="color" value="#241e1e" id="color">
+            <button id="normal">Normal Mode</button>
+            <button id="erase">Eraser Mode</button>
+            <button id="clear">Clear</button>
+            <input type="range" min="1" max="64" value="16" id="dimensions">
+        </div>
+        <div class="canvas" draggable="false"></div>    
+    </div>
 </body>
 </html>

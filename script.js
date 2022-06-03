@@ -1,6 +1,9 @@
 const canv = document.querySelector('.canvas');
 let temp, temp2, n, pixels;
 
+let canvStyle = getComputedStyle(canv);
+// let x = Number(canvStyle.height.slice(0,canvStyle.height.length - 2));
+
 
 // Function to create canvas, takes as input an integer and updates
 // container with n*n *pixels*
@@ -10,7 +13,7 @@ function createCanvas(n) {
     for(i=0;i<n;i++){
         temp = document.createElement("div");
         temp.classList.add(`rows`);
-        temp.style.height = `${512/n}px`;
+        temp.style.height = `${720/n}px`;
         temp.setAttribute('draggable', 'false');
         canv.appendChild(temp);
         for(j=0;j<n;j++){
@@ -54,7 +57,7 @@ function draw(e){
         e.target.style.background = color;
     }
     else if(flag==='erase'){
-        e.target.style.background = "white"
+        e.target.style.background = canvStyle.backgroundColor;
     }
 }
 
