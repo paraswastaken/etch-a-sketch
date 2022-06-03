@@ -20,16 +20,17 @@ function createCanvas(n) {
     pixels.forEach(evl);
 }
 
-createCanvas(16);
 
-const dim = document.querySelector('#dimensions');
-dim.onclick = ()=>{
+const slider = document.querySelector('#dimensions');
+slider.oninput = ()=>{
     while(canv.firstChild){
         canv.removeChild(canv.firstChild);
     }
-    n = Number(prompt("Enter n"));
+    n = slider.value;
     createCanvas(n);
 };
+
+createCanvas(slider.value);
 
 let mouseDown = false
 document.body.onmousedown = () => (mouseDown = true)
