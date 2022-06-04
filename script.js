@@ -1,6 +1,6 @@
 const canv = document.querySelector('.canvas');
 let temp, temp2, n, pixels;
-
+let randomColor;
 let canvStyle = getComputedStyle(canv);
 // let x = Number(canvStyle.height.slice(0,canvStyle.height.length - 2));
 
@@ -35,11 +35,13 @@ let color = colPick.value;
 
 let flag = 'normal';
 document.querySelector('#normal'). onclick = ()=>flag='normal';
+document.querySelector('#rainbow'). onclick = ()=>flag='rainbow';
 document.querySelector('#erase'). onclick = ()=>flag='erase';
 
 let mouseDown = false
 document.body.onmousedown = () => (mouseDown = true)
 document.body.onmouseup = () => (mouseDown = false)
+canv.onmouseover = () => randomColor = Math.floor(Math.random()*16777215).toString(16);
 
 
 function clear(){
@@ -59,6 +61,9 @@ function draw(e){
     else if(flag==='erase'){
         e.target.style.background = canvStyle.backgroundColor;
     }
+    else if(flag==='rainbow'){
+        e.target.style.background = '#' + randomColor;
+    }
 }
 
 
@@ -75,9 +80,10 @@ slider.oninput = ()=>{
     }
     n = slider.value;
     createCanvas(n);
+    rangeT.textContent = `${n} x ${n}`;
 };
 
-// const rangeT = document.querySelector(".rangeText")
-// rangeT.textContent = `${slider.value} x ${slider.value}`;
+const rangeT = document.querySelector(".rangeText")
+rangeT.textContent = `${slider.value} x ${slider.value}`;
 
 createCanvas(slider.value);
