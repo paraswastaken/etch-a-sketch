@@ -13,7 +13,7 @@ function createCanvas(n) {
     for(i=0;i<n;i++){
         temp = document.createElement("div");
         temp.classList.add(`rows`);
-        temp.style.height = `${720/n}px`;
+        temp.style.height = `${640/n}px`;
         temp.setAttribute('draggable', 'false');
         canv.appendChild(temp);
         for(j=0;j<n;j++){
